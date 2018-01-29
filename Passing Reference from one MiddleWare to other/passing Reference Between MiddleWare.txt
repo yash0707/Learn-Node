@@ -1,0 +1,26 @@
+Passing References
+
+request is always the same object in the lifecycle of a single client request to the Express server. This allows us to implement a very useful pattern in which developers pass data from one middleware to another and to a request handler.
+
+For example, developers can connect to a database in one middleware and make it available in all the subsequent middleware functions and request handlers (routes).
+
+app.use(function (request, response, next) {  
+  DatabaseClient.connect(URI, (err, db) => {
+    // error handling
+    request.database = db    
+    next()
+  })
+})
+
+In this middleware, database is available in the request object and we can run queries such as finding an application by the app ID:
+
+app.use((req, res, next) => {
+  req.database.collection('apps').findOne({appId: req.query.appId}, (err, app) => {
+    // error handling
+    req.app = app
+    next()
+  })
+})
+
+This makes moving routes and middleware to other files (modularization) straightforward, i.e., keeping code neat and organized.
+
