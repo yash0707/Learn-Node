@@ -44,3 +44,14 @@ app.listen(3000)
 //     filter = request.params.filter
 //   res.status(200).send()
 // })
+
+
+
+// app.get('/search', (req, res) => {
+//   db.find(
+//     {term: req.query.term}, 
+//     {page: req.query.page, limit: 10}, (error, results)=> {
+//     // error handling
+//     res.send(results)
+//   })
+// })
