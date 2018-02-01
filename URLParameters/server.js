@@ -11,8 +11,9 @@ const profile = [{
 }]
 
 app.get('/profile', (req, res)=>{
-    if(req.query.id) return res.send(profile[req.query.id])
-            res.send(profile)
+    if(req.query.id) 
+        return res.send(profile[req.query.id])
+    res.send(profile)
 })
 
 app.post('/profile', (req, res) => {
@@ -35,16 +36,11 @@ app.delete('/profile/:id', (req, res)=>{
 
 app.listen(3000)
 
-
-
-
-// Instruction to request from terminal
-
-// 1. GET Request:-  
-// curl "http://localhost:3000/profile"          
-// 2. POST Request:- 
-// curl -H "Content-Type: application/json" -X POST -d '{"first_name":"Yash"}' localhost:3000/profile
-// 3. PUT Request:-
-// replace with PUT in place of POST
-// 4. DELETE Request:-
-// curl -X DELETE localhost:3000/profile
+//Multiple URL parameters
+// 
+// app.get('/users/:id/transactions/:transactionId/:filter', (req, res) => {
+//     const usersId = request.params.id,
+//     transactionId = request.params.transactionId,
+//     filter = request.params.filter
+//   res.status(200).send()
+// })
